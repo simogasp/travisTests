@@ -15,3 +15,5 @@ Options for clang are:
 
 
 Other sources are available here https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
+
+[![Build Status](https://travis-ci.org/simogasp/travisTests.svg?branch=trusty)](https://travis-ci.org/simogasp/travisTests)
