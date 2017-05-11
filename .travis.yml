@@ -5,8 +5,10 @@ addons:
   apt:
     sources:
       - llvm-toolchain-trusty
+      - ubuntu-toolchain-r-test
     packages:
       - clang-3.8
+      - g++-5
       - zlib1g-dev
       - libhdf5-dev
 
@@ -16,6 +18,10 @@ matrix:
       env: CXX_COMPILER=g++-4.8 C_COMPILER=gcc-4.8 TOOLSET=gcc VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=ON
     - compiler: gcc
       env: CXX_COMPILER=g++-4.8 C_COMPILER=gcc-4.8 TOOLSET=gcc VISUAL_DEBUG=OFF CCTAG_SERIALIZE=ON WITH_CUDA=OFF
+    - compiler: gcc
+      env: CXX_COMPILER=g++-5 C_COMPILER=gcc-5 TOOLSET=gcc VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=ON
+    - compiler: gcc
+      env: CXX_COMPILER=g++-5 C_COMPILER=gcc-5 TOOLSET=gcc VISUAL_DEBUG=OFF CCTAG_SERIALIZE=ON WITH_CUDA=OFF
     - compiler: clang
       env: CXX_COMPILER=clang++ C_COMPILER=clang TOOLSET=clang VISUAL_DEBUG=OFF CCTAG_SERIALIZE=OFF WITH_CUDA=ON
     - compiler: clang
