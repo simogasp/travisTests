@@ -1,28 +1,30 @@
 language: cpp
 dist: trusty
 
+addons:
+  apt:
+    sources:
+      - llvm-toolchain-trusty
+    packages:
+      - clang-3.8
+      - zlib1g-dev
+      - libhdf5-dev
+
 matrix:
   include:
     - compiler: gcc
-      addons:
-        apt:
-          # sources:
-          #   - ubuntu-toolchain-r-test
-          packages:
-            # - g++-4.8
-            - zlib1g-dev
-            - libhdf5-dev
-      env: COMPILER=g++-4.8
+      env: CXX_COMPILER=g++-4.8 C_COMPILER=gcc-4.8 TOOLSET=gcc VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=ON
+    - compiler: gcc
+      env: CXX_COMPILER=g++-4.8 C_COMPILER=gcc-4.8 TOOLSET=gcc VISUAL_DEBUG=OFF CCTAG_SERIALIZE=ON WITH_CUDA=OFF
     - compiler: clang
-      addons:
-        apt:
-          sources:
-            - llvm-toolchain-trusty
-          packages:
-            - clang-3.8
-            - zlib1g-dev
-            - libhdf5-dev
-      env: COMPILER=clang-3.8
+      env: CXX_COMPILER=clang++ C_COMPILER=clang TOOLSET=clang VISUAL_DEBUG=OFF CCTAG_SERIALIZE=OFF WITH_CUDA=ON
+    - compiler: clang
+      env: CXX_COMPILER=clang++ C_COMPILER=clang TOOLSET=clang VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=OFF
+    - compiler: clang
+      env: CXX_COMPILER=clang++-3.8 C_COMPILER=clang-3.8 TOOLSET=clang VISUAL_DEBUG=OFF CCTAG_SERIALIZE=OFF WITH_CUDA=ON
+    - compiler: clang
+      env: CXX_COMPILER=clang++-3.8 C_COMPILER=clang-3.8 TOOLSET=clang VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=OFF
+
 
 env:
   global:
@@ -34,5 +36,7 @@ script:
   - gcc --version
   - g++ --version  
   - cmake --version
-  - ${COMPILER} --version
+  - ${CXX_COMPILER} --version
+  - ${C_COMPILER} --version
+  - echo "VISUAL_DEBUG=${VISUAL_DEBUG} CCTAG_SERIALIZE=${CCTAG_SERIALIZE} WITH_CUDA=${WITH_CUDA}"
 
