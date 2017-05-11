@@ -6,10 +6,10 @@ matrix:
     - compiler: gcc
       addons:
         apt:
-          # sources:
-          #   - ubuntu-toolchain-r-test
+          sources:
+            - ubuntu-toolchain-r-test
           packages:
-            # - g++-4.8
+            - g++-5
             - zlib1g-dev
             - libhdf5-dev
       env: COMPILER=g++-4.8

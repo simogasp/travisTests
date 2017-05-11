@@ -7,6 +7,10 @@ By default trusty sports:
 * clang 3.5.0
 * cmake 3.2.2
 
+Options for gcc are:
+
+* gcc-5 g++5 with ubuntu-toolchain-r-test
+
 Options for clang are:
 
 * 3.8 using sources: llvm-toolchain-trusty and clang-3.8
