@@ -15,26 +15,29 @@ addons:
 matrix:
   include:
     - compiler: gcc
-      env: CXX_COMPILER=g++-4.8 C_COMPILER=gcc-4.8 TOOLSET=gcc VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=ON
+      env: COMPILERS="CXX=g++-4.8 && CC=gcc-4.8" TOOLSET=gcc VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=ON
     - compiler: gcc
-      env: CXX_COMPILER=g++-4.8 C_COMPILER=gcc-4.8 TOOLSET=gcc VISUAL_DEBUG=OFF CCTAG_SERIALIZE=ON WITH_CUDA=OFF
-    - compiler: gcc
-      env: CXX_COMPILER=g++-5 C_COMPILER=gcc-5 TOOLSET=gcc VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=ON
-    - compiler: gcc
-      env: CXX_COMPILER=g++-5 C_COMPILER=gcc-5 TOOLSET=gcc VISUAL_DEBUG=OFF CCTAG_SERIALIZE=ON WITH_CUDA=OFF
+      env: COMPILERS="CXX=g++-4.8 && CC=gcc-4.8" TOOLSET=gcc VISUAL_DEBUG=OFF CCTAG_SERIALIZE=ON WITH_CUDA=OFF
+    - compiler: gcc-5
+      env: COMPILERS="CXX=g++-5 && CC=gcc-5" TOOLSET=gcc VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=ON
+    - compiler: gcc-5
+      env: COMPILERS="CXX=g++-5 && CC=gcc-5" TOOLSET=gcc VISUAL_DEBUG=OFF CCTAG_SERIALIZE=ON WITH_CUDA=OFF
     - compiler: clang
-      env: CXX_COMPILER=clang++ C_COMPILER=clang TOOLSET=clang VISUAL_DEBUG=OFF CCTAG_SERIALIZE=OFF WITH_CUDA=ON
+      env: COMPILERS="CXX=clang++ && CC=clang" TOOLSET=clang VISUAL_DEBUG=OFF CCTAG_SERIALIZE=OFF WITH_CUDA=ON
     - compiler: clang
-      env: CXX_COMPILER=clang++ C_COMPILER=clang TOOLSET=clang VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=OFF
+      env: COMPILERS="CXX=clang++ && CC=clang" TOOLSET=clang VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=OFF
     - compiler: clang-3.8
-      env: CXX_COMPILER=clang++-3.8 C_COMPILER=clang-3.8 TOOLSET=clang VISUAL_DEBUG=OFF CCTAG_SERIALIZE=OFF WITH_CUDA=ON
+      env: COMPILERS="CXX=clang++-3.8 && CC=clang-3.8" TOOLSET=clang VISUAL_DEBUG=OFF CCTAG_SERIALIZE=OFF WITH_CUDA=ON
     - compiler: clang-3.8
-      env: CXX_COMPILER=clang++-3.8 C_COMPILER=clang-3.8 TOOLSET=clang VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=OFF
+      env: COMPILERS="CXX=clang++-3.8 && CC=clang-3.8" TOOLSET=clang VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=OFF
 
 
 env:
   global:
     - NUM_CPU="`grep processor /proc/cpuinfo | wc -l`"; echo $NUM_CPU
+
+before_install:
+    - eval "${COMPILERS}"
 
 script:
   - cc --version
@@ -42,6 +45,9 @@ script:
   - gcc --version
   - g++ --version
   - cmake --version
-  - ${CXX_COMPILER} --version
-  - ${C_COMPILER} --version
+  - ${CXX} --version
+  - ${CC} --version
   - echo "VISUAL_DEBUG=${VISUAL_DEBUG} CCTAG_SERIALIZE=${CCTAG_SERIALIZE} WITH_CUDA=${WITH_CUDA}"
+  - mkdir build
+  - cd build
+  - cmake ..
