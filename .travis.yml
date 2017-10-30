@@ -26,9 +26,9 @@ matrix:
       env: CXX_COMPILER=clang++ C_COMPILER=clang TOOLSET=clang VISUAL_DEBUG=OFF CCTAG_SERIALIZE=OFF WITH_CUDA=ON
     - compiler: clang
       env: CXX_COMPILER=clang++ C_COMPILER=clang TOOLSET=clang VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=OFF
-    - compiler: clang
+    - compiler: clang-3.8
       env: CXX_COMPILER=clang++-3.8 C_COMPILER=clang-3.8 TOOLSET=clang VISUAL_DEBUG=OFF CCTAG_SERIALIZE=OFF WITH_CUDA=ON
-    - compiler: clang
+    - compiler: clang-3.8
       env: CXX_COMPILER=clang++-3.8 C_COMPILER=clang-3.8 TOOLSET=clang VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=OFF
 
 
@@ -38,11 +38,10 @@ env:
 
 script:
   - cc --version
-  - c++ --version  
+  - c++ --version
   - gcc --version
-  - g++ --version  
+  - g++ --version
   - cmake --version
   - ${CXX_COMPILER} --version
   - ${C_COMPILER} --version
   - echo "VISUAL_DEBUG=${VISUAL_DEBUG} CCTAG_SERIALIZE=${CCTAG_SERIALIZE} WITH_CUDA=${WITH_CUDA}"
-

@@ -4,7 +4,7 @@ Just a collection to easily test travis features
 By default trusty sports:
 
 * gcc 4.8.4
-* clang 3.5.0
+* clang 3.9.0
 * cmake 3.2.2
 
 Options for clang are:
