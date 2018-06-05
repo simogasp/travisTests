@@ -10,6 +10,8 @@ addons:
       - clang-4.0
       - g++-5
       - g++-6
+      - g++-7
+      - g++-8
       - zlib1g-dev
       - libhdf5-dev
 
@@ -23,6 +25,12 @@ matrix:
       env: COMPILERS="CXX=g++-5 && CC=gcc-5" TOOLSET=gcc VISUAL_DEBUG=ON CCTAG_SERIALIZE=ON WITH_CUDA=ON
     - compiler: gcc-5
       env: COMPILERS="CXX=g++-5 && CC=gcc-5" TOOLSET=gcc VISUAL_DEBUG=OFF CCTAG_SERIALIZE=ON WITH_CUDA=OFF
+    - compiler: gcc-6
+      env: COMPILERS="CXX=g++-6 && CC=gcc-6" TOOLSET=gcc VISUAL_DEBUG=OFF CCTAG_SERIALIZE=ON WITH_CUDA=OFF
+    - compiler: gcc-7
+      env: COMPILERS="CXX=g++-7 && CC=gcc-7" TOOLSET=gcc VISUAL_DEBUG=OFF CCTAG_SERIALIZE=ON WITH_CUDA=OFF
+    - compiler: gcc-8
+      env: COMPILERS="CXX=g++-8 && CC=gcc-8" TOOLSET=gcc VISUAL_DEBUG=OFF CCTAG_SERIALIZE=ON WITH_CUDA=OFF
     - compiler: clang
       env: COMPILERS="CXX=clang++ && CC=clang" TOOLSET=clang VISUAL_DEBUG=OFF CCTAG_SERIALIZE=OFF WITH_CUDA=ON
     - compiler: clang
