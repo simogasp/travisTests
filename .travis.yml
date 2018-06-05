@@ -9,6 +9,7 @@ addons:
     packages:
       - clang-4.0
       - g++-5
+      - g++-6
       - zlib1g-dev
       - libhdf5-dev
 
