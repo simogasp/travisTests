@@ -7,9 +7,12 @@ By default trusty sports:
 * clang 3.9.0
 * cmake 3.2.2
 
-Options for gcc are:
+Options for gcc with ubuntu-toolchain-r-test are:
 
-* gcc-5 g++5 (5.4.1) with ubuntu-toolchain-r-test
+* gcc-5 g++5 (5.5.0) 
+* gcc-6 g++6 (6.4.0) 
+* gcc-7 g++7 (7.3.0) 
+* gcc-8 g++8 (8.0.1) 
 
 Options for clang are:
 
