@@ -17,6 +17,7 @@ on:
       - 'docs/**'
 
 jobs:
+  
   build_windows:
       runs-on: windows-latest
       strategy:
